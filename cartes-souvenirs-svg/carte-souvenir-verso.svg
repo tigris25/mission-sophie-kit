@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="85.6mm" height="54.0mm" viewBox="0 0 85.6 54.0">
+  <title>Carte-souvenir - verso</title>
+  <g id="contour_carte" inkscape:groupmode="layer" inkscape:label="Contour carte (repere, ne pas graver)" fill="none" stroke="#ff0000" stroke-width="0.1">
+    <rect x="0" y="0" width="85.6" height="54.0" rx="3"/>
+  </g>
+  <g id="traits" inkscape:groupmode="layer" inkscape:label="Gravure traits" fill="none" stroke="#000000" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="2" width="81.6" height="50" rx="1.6"/>
+    <rect x="3.2" y="3.2" width="79.2" height="47.6" rx="0.8"/>
+    <line x1="18" y1="27" x2="36" y2="27" stroke-width="0.25"/>
+    <line x1="49.6" y1="27" x2="67.6" y2="27" stroke-width="0.25"/>
+  </g>
+  <g id="pleins" inkscape:groupmode="layer" inkscape:label="Gravure pleine" fill="#000000" stroke="none">
+    <polygon points="5.6,4.4 6.8,5.6 5.6,6.8 4.4,5.6"/>
+    <polygon points="5.6,47.2 6.8,48.4 5.6,49.6 4.4,48.4"/>
+    <polygon points="80,4.4 81.2,5.6 80,6.8 78.8,5.6"/>
+    <polygon points="80,47.2 81.2,48.4 80,49.6 78.8,48.4"/>
+    <polygon points="42.800,23.000 42.008,26.208 38.800,27.000 42.008,27.792 42.800,31.000 43.592,27.792 46.800,27.000 43.592,26.208"/>
+  </g>
+  <g id="textes" inkscape:groupmode="layer" inkscape:label="Textes (convertir en chemins)" fill="#000000" stroke="none">
+    <text x="42.8" y="16" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', 'Times New Roman', serif" font-weight="700" font-size="4.2" letter-spacing="0.4">GARDIENNES</text>
+    <text x="42.8" y="42" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', 'Times New Roman', serif" font-size="2.1">NOUS JURONS DE PROTÉGER LA LUMIÈRE</text>
+  </g>
+</svg>

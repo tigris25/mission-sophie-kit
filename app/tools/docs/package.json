@@ -1,0 +1,7 @@
+{
+  "name": "mission-sophie-docs",
+  "private": true,
+  "description": "Génère les documents Word du jeu (textes, déroulé, fiche MJ, préparation, voix) dans ../../../documents",
+  "scripts": { "docs": "node gen.js && node fiche.js && node prep.js && node voix.js" },
+  "dependencies": { "docx": "^9.8.1" }
+}

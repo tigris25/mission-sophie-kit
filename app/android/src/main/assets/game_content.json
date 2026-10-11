@@ -1,0 +1,414 @@
+{
+  "version": 3,
+  "defaultVariant": "pluie",
+  "variants": {
+    "pluie": {
+      "_label": "☔ Il pleut",
+      "piege_de": "de la mezzanine",
+      "coeur_lieu": "dans la cave",
+      "eclipse_zone": "la cuisine"
+    },
+    "beau": {
+      "_label": "☀ Il fait beau",
+      "piege_de": "du trampoline",
+      "coeur_lieu": "près de l'étendage à linge",
+      "eclipse_zone": "l'allée du garage"
+    }
+  },
+  "settings": {
+    "idleFirstAfterSec": 240,
+    "idleRepeatEverySec": 150,
+    "idleMaxMessages": 6,
+    "idleMinGapSec": 60,
+    "minSecondScanDelaySec": 30,
+    "codeAttemptsBeforeHint": 3,
+    "codeCooldownAfterHintSec": 5,
+    "wrongCodeMsgGapSec": 20,
+    "levelUpSec": 7,
+    "rewardMinSec": 4,
+    "rewardScreenSec": 45,
+    "corruptionSec": 5,
+    "finaleSec": 25
+  },
+  "sequence": [
+    "telepathe", "rafaleur", "polyglotte", "phaseur", "empathe", "hydrokinesiste",
+    "technopathe", "eclipseur", "fluctuateur", "chargeur", "flasheur", "hypnotiseur",
+    "givreur", "invocateur", "instillateur", "teleporteur", "tenebreux", "vociferateur"
+  ],
+  "intro": [
+    "Gardiennes… vous m'entendez ? C'est moi, Sophie. Je vous parle grâce à mon Transmetteur.",
+    "Les Invisibles ont brisé mes pouvoirs. Sans eux, je ne peux plus protéger personne.",
+    "Chacune de vous porte un pendentif : c'est la clé d'un de mes pouvoirs. Ensemble, vous pouvez me les rendre.",
+    "Acceptez-vous cette mission, Gardiennes ? Alors levez la main droite et répétez : « Nous jurons de protéger la lumière ! »",
+    { "speaker": "invisibles", "text": "Hi hi hi… Quelle touchante petite équipe ! Continuez, ça nous amuse. Vous n'y arriverez jamais." }
+  ],
+  "gathering": {
+    "introText": "Chacune à votre tour, posez votre pendentif sur le Transmetteur pour réveiller votre talent !",
+    "template": "{la}{talent} a répondu à l'appel !",
+    "doneText": "Toutes les Gardiennes sont réunies. Que la mission commence !"
+  },
+  "cardText": "Ta carte-souvenir n°{n} t'attend auprès du Maître du jeu. Garde-la précieusement, elle servira à la fin !",
+  "powers": [
+    {
+      "id": "telepathe", "name": "Télépathe", "talent": "Télépathe", "color": "#6FA8FF",
+      "callText": "Je n'entends plus les pensées de personne… Que la Télépathe s'avance !",
+      "title": "Le murmure des esprits",
+      "consigne": "Le Maître du jeu va murmurer un message à la première d'entre vous. Chuchotez-le à la suivante, une seule fois, sans le répéter. La dernière devra le retranscrire et taper le mot secret.",
+      "answers": ["ETINCELLE"],
+      "hint": "Le mot secret est dans le message chuchoté. La dernière Gardienne peut demander de l'aide à ses amies !",
+      "idleFirstAfterSec": 300,
+      "successText": "Je les entends ! Les pensées reviennent, une à une. Merci, Télépathe !",
+      "reactText": "Bravo, bravo… vous savez chuchoter. Quelle prouesse."
+    },
+    {
+      "id": "rafaleur", "name": "Rafaleur", "talent": "Rafaleuse", "color": "#7FE0D4",
+      "callText": "Le vent ne m'obéit plus ! Rafaleuse, viens vite.",
+      "title": "Le souffle du vent",
+      "consigne": "Faites avancer le ballon jusqu'à la ligne d'arrivée sans jamais le toucher. Seul votre souffle (ou vos éventails) a le droit d'agir ! Le Maître du jeu vous donnera le code à l'arrivée.",
+      "answers": ["VENT"],
+      "hint": "Le Maître du jeu connaît le code. Franchissez la ligne sans toucher l'objet et il vous le chuchotera.",
+      "successText": "Le vent me répond ! Sentez-vous cette brise ?",
+      "reactText": "Un peu d'air, c'est tout ? Attendez qu'on s'énerve."
+    },
+    {
+      "id": "polyglotte", "name": "Polyglotte", "talent": "Polyglotte", "color": "#F5B942",
+      "callText": "Je ne comprends plus aucune langue ! J'ai besoin du talent de la Polyglotte.",
+      "title": "La langue secrète",
+      "consigne": "Un message codé vous attend : OH PRW HVW RUDJH. Je ne peux pas vous dire comment régler la roue, les Invisibles nous écoutent… Mais voici mon secret : mes messages commencent toujours par LE. Trouvez le bon réglage, déchiffrez, et le dernier mot sera votre code.",
+      "answers": ["ORAGE"],
+      "hint": "Cherchez la première lettre du message (O) sur le grand disque, et tournez le petit jusqu'à ce que son L soit juste en face. Vérifiez : le H doit alors tomber en face du E !",
+      "successText": "Les mots reviennent ! Je comprends de nouveau toutes les langues.",
+      "reactText": "Déchiffrer un petit message et vous voilà savantes ? Ridicule."
+    },
+    {
+      "id": "phaseur", "name": "Phaseur", "talent": "Phaseuse", "color": "#A8B4D0",
+      "callText": "Je n'arrive plus à traverser la matière… Phaseuse, montre-moi le chemin !",
+      "title": "Le mur de fils",
+      "consigne": "Les Invisibles ont tendu un piège de fils et de clochettes. Traversez-le sans faire tinter une seule clochette. Si l'une sonne, on recommence ! La Phaseuse passe en premier et guide les autres. Le Maître du jeu vous donnera le code.",
+      "answers": ["PASSAGE"],
+      "hint": "Le Maître du jeu connaît le code. Traversez toutes sans un tintement et il vous le chuchotera.",
+      "successText": "Je traverse de nouveau la matière comme si elle n'existait pas !",
+      "reactText": "Nos clochettes n'ont rien entendu ? Elles doivent être sourdes."
+    },
+    {
+      "id": "empathe", "name": "Empathe", "talent": "Empathe", "color": "#FF6F91",
+      "callText": "Je ne ressens plus ce que ressentent les autres… Empathe, j'ai besoin de ton cœur !",
+      "title": "Le cœur des autres",
+      "consigne": "Chacune votre tour, tirez une carte émotion et mimez-la sans un mot. L'Empathe doit deviner 5 émotions. Le Maître du jeu vous donnera alors le code.",
+      "answers": ["COEUR"],
+      "hint": "Le Maître du jeu connaît le code. Faites deviner 5 émotions à l'Empathe et il vous le chuchotera.",
+      "successText": "Je sens de nouveau vos émotions… et je sens que vous êtes fières de vous !",
+      "reactText": "Des émotions, toujours des émotions… Nous, on ne ressent que de l'agacement."
+    },
+    {
+      "id": "hydrokinesiste", "name": "Hydrokinésiste", "talent": "Hydrokinésiste", "color": "#2FB4F0",
+      "callText": "L'eau ne m'écoute plus ! Hydrokinésiste, viens vite, avant que tout ne s'assèche !",
+      "title": "La rivière docile",
+      "consigne": "Sous la pergola, faites voyager l'eau du seau jusqu'au verre, avec seulement des éponges et des cuillères. Quand l'eau atteint le trait, le Maître du jeu vous donnera le code. Attention aux éclaboussures !",
+      "answers": ["ONDE"],
+      "hint": "Le Maître du jeu connaît le code. Remplissez le verre jusqu'au trait et il vous le chuchotera.",
+      "successText": "L'eau danse de nouveau entre mes doigts. Merci, Hydrokinésiste !",
+      "reactText": "Quelques gouttes d'eau… Vous appelez ça un talent ?"
+    },
+    {
+      "id": "technopathe", "name": "Technopathe", "talent": "Technopathe", "color": "#8BD450",
+      "callText": "Les machines ne me répondent plus ! Technopathe, à toi de leur parler.",
+      "title": "Le code de la machine",
+      "consigne": "La machine des Invisibles affiche des rangées d'ampoules allumées ou éteintes. Sur chaque rangée, additionnez les valeurs des ampoules allumées : le total donne une lettre (A = 1, B = 2…). Les lettres forment le code.",
+      "answers": ["PUCE"],
+      "hint": "N'additionnez que les ampoules allumées : 16, 8, 4, 2, 1. Par exemple, 16 + 4 = 20, donc T.",
+      "successText": "Les machines ronronnent de nouveau. Bravo, Technopathe !",
+      "reactText": "Vous avez parlé à notre machine ? Elle ne nous dit jamais rien, à nous."
+    },
+    {
+      "id": "eclipseur", "name": "Éclipseur", "talent": "Éclipseuse", "color": "#B39DFF",
+      "callText": "Je n'arrive plus à disparaître… Éclipseuse, j'ai besoin de toi !",
+      "title": "Le passage invisible",
+      "consigne": "Les gardes des Invisibles surveillent {{eclipse_zone}}. Traversez sans qu'ils vous voient bouger : dès qu'un garde se retourne, immobiles ! Si vous êtes surprises, on recommence. De l'autre côté, le Maître du jeu vous confiera le code.",
+      "answers": ["INVISIBLE"],
+      "hint": "Le Maître du jeu connaît le code. Réussissez la traversée et il vous le chuchotera.",
+      "successText": "La lumière me traverse de nouveau : je peux disparaître ! Merci, Éclipseuse !",
+      "reactText": "Vous avez frôlé nos gardes sans vous faire prendre… par chance !"
+    },
+    {
+      "id": "fluctuateur", "name": "Fluctuateur", "talent": "Fluctuatrice", "color": "#5ED6A0",
+      "callText": "Tout est devenu trop lourd ou trop léger… Fluctuatrice, rends à la matière sa densité !",
+      "title": "Le poids de l'eau",
+      "consigne": "Un œuf repose au fond du verre, et le code est écrit dessous. Changez la densité de l'eau, cuillère de sel après cuillère de sel, jusqu'à ce que l'œuf remonte et révèle le code.",
+      "answers": ["PLUME"],
+      "hint": "Ajoutez du sel et mélangez doucement : plus l'eau est salée, plus elle porte l'œuf.",
+      "successText": "La matière m'obéit de nouveau. Lourd, léger… c'est moi qui décide !",
+      "reactText": "Un œuf qui flotte ? Passionnant. Réveillez-nous quand c'est fini."
+    },
+    {
+      "id": "chargeur", "name": "Chargeur", "talent": "Chargeuse", "color": "#F9A03F",
+      "callText": "Je n'ai plus aucune énergie… Chargeuse, recharge-moi !",
+      "title": "L'étincelle vivante",
+      "consigne": "Frottez les ballons sur vos cheveux pour les charger, puis attrapez les petits papiers sans les toucher. Remettez les lettres attrapées dans l'ordre pour trouver le code.",
+      "answers": ["ECLAIR"],
+      "hint": "Frottez fort et longtemps ! Les lettres forment un mot qui brille dans le ciel pendant l'orage.",
+      "successText": "Je sens l'énergie crépiter en moi ! Merci, Chargeuse !",
+      "reactText": "Quelques cheveux ébouriffés et vous vous croyez puissantes ?"
+    },
+    {
+      "id": "flasheur", "name": "Flasheur", "talent": "Flasheuse", "color": "#FFE45C",
+      "callText": "Tout est devenu si sombre… Je ne sais plus faire briller la lumière ! Flasheuse, à toi !",
+      "title": "Le rayon révélateur",
+      "consigne": "Dans la pièce sombre, éclairez le carton étoilé avec la lampe. Orientez la lumière jusqu'à ce que les points projetés au mur forment un mot : c'est votre code.",
+      "answers": ["LUMIERE"],
+      "hint": "Approchez ou éloignez la lampe du carton, et tournez-le doucement : les lettres apparaissent au mur.",
+      "successText": "La lumière m'obéit de nouveau ! Tout brille autour de moi.",
+      "reactText": "Pff, un petit rayon de lumière… Il en faut plus pour nous éblouir."
+    },
+    {
+      "id": "hypnotiseur", "name": "Hypnotiseur", "talent": "Hypnotiseuse", "color": "#C77DFF",
+      "callText": "Plus personne ne suit mes suggestions… Hypnotiseuse, j'ai besoin de ton regard !",
+      "title": "L'Hypnotiseuse a dit",
+      "consigne": "L'Hypnotiseuse donne des ordres. N'obéissez que s'ils commencent par « L'Hypnotiseuse a dit » ! Après 10 ordres, s'il reste au moins 3 Gardiennes hypnotisées, le Maître du jeu vous donnera le code.",
+      "answers": ["TRANSE"],
+      "hint": "Le Maître du jeu connaît le code. Réussissez les 10 ordres et il vous le chuchotera.",
+      "successText": "Vos esprits sont forts, et mon talent est revenu. Bravo !",
+      "reactText": "Hypnotiser des enfants ? Même nous, on n'y arrive pas à l'heure du coucher."
+    },
+    {
+      "id": "givreur", "name": "Givreur", "talent": "Givreuse", "color": "#CFEFFF",
+      "callText": "Je n'arrive plus à faire geler la moindre goutte… Givreuse, j'ai besoin de toi !",
+      "title": "Le cœur de glace",
+      "consigne": "Les Invisibles ont enfermé le code dans un bloc de glace. Libérez-le sans outil : vos mains, de l'eau tiède et du sel. La Givreuse est la seule à pouvoir sortir le message.",
+      "answers": ["GIVRE"],
+      "hint": "Le sel et l'eau tiède font fondre la glace plus vite. Frottez, versez, patience !",
+      "successText": "Le froid m'obéit de nouveau. Brrr, que c'est bon !",
+      "reactText": "Vous avez fait fondre notre glaçon ? Il nous en reste des milliers."
+    },
+    {
+      "id": "invocateur", "name": "Invocateur", "talent": "Invocatrice", "color": "#E573C8",
+      "callText": "Je n'arrive plus à faire apparaître le moindre objet. Invocatrice, j'ai besoin de toi !",
+      "title": "L'atelier des mirages",
+      "consigne": "J'ai besoin d'une couronne. Faites-la apparaître avec ce que vous trouvez dans la boîte à récup, avant la fin du temps. Le Maître du jeu jugera le résultat et vous donnera le code.",
+      "answers": ["ATELIER"],
+      "hint": "Le Maître du jeu connaît le code. Présentez-lui votre création, il vous le chuchotera.",
+      "successText": "Les objets apparaissent de nouveau dans mes mains, regardez ça !",
+      "reactText": "Un bricolage de plus… Notre atelier est bien plus impressionnant."
+    },
+    {
+      "id": "instillateur", "name": "Instillateur", "talent": "Instillatrice", "color": "#FFB3D1",
+      "callText": "Je n'arrive plus à transmettre la moindre émotion… Instillatrice, toi seule peux m'aider !",
+      "title": "La joie contagieuse",
+      "consigne": "Vos amies doivent rester sérieuses comme des statues. Instillatrice, tu as 2 minutes pour leur insuffler la joie et les faire toutes rire, sans les toucher !",
+      "answers": ["RIRE"],
+      "hint": "Le Maître du jeu connaît le code. Quand toutes les Gardiennes ont ri, il vous le chuchotera.",
+      "successText": "Je sens la joie revenir en moi… Merci, Instillatrice !",
+      "reactText": "Rire ? Nous ne rions jamais. Enfin… presque jamais."
+    },
+    {
+      "id": "teleporteur", "name": "Téléporteur", "talent": "Téléporteuse", "color": "#FF8A65",
+      "callText": "Je n'arrive plus à me téléporter ! Téléporteuse, à toi de jouer.",
+      "title": "Le saut de Sophie",
+      "consigne": "Je me suis téléportée quelque part ! Sur le plan quadrillé, trouvez la case C4 et rejoignez l'endroit correspondant. Une carte scellée vous y attend : rapportez son mot secret.",
+      "answers": ["CRISTAL"],
+      "hint": "Le mot est écrit sur la carte scellée, à l'endroit que désigne le plan.",
+      "successText": "Je peux de nouveau me téléporter où je veux !",
+      "reactText": "Vous avez trouvé la bonne case. Ça ne durera pas."
+    },
+    {
+      "id": "tenebreux", "name": "Ténébreux", "talent": "Ténébreuse", "color": "#8A6BE0",
+      "callText": "Les ombres ne m'obéissent plus… Ténébreuse, viens les dompter !",
+      "title": "Le théâtre d'ombres",
+      "consigne": "Derrière le drap, le Maître du jeu fait passer des objets dans la lumière. Reconnaissez chaque objet à son ombre : leurs initiales, dans l'ordre, forment le code.",
+      "answers": ["CAPE"],
+      "hint": "Notez la première lettre de chaque objet reconnu, dans l'ordre de passage.",
+      "successText": "Les ombres dansent de nouveau pour moi. Merci, Ténébreuse !",
+      "reactText": "Jouer avec les ombres ? C'est NOTRE spécialité, voyons."
+    },
+    {
+      "id": "vociferateur", "name": "Vociférateur", "talent": "Vocifératrice", "color": "#FF5252",
+      "kind": "shout",
+      "shout": { "threshold": 0.8, "holdSec": 3 },
+      "callText": "Ma voix ne porte plus… Vocifératrice, prête-moi ta voix !",
+      "title": "Le cri qui porte",
+      "consigne": "Faites trembler le Transmetteur ! Criez toutes ensemble le plus fort possible et gardez la jauge tout en haut pendant 3 secondes.",
+      "hint": "Plus fort ! Toutes ensemble, et tenez le cri jusqu'au bout !",
+      "successText": "Quelle voix ! Ma puissance résonne de nouveau !",
+      "reactText": "Aïe, nos oreilles ! Vous n'étiez pas obligées de crier si fort…"
+    },
+    {
+      "id": "telekinesie", "name": "Télékinésie", "talent": "Télékinésiste", "color": "#D7B899",
+      "bonusOnly": true,
+      "callText": "Je n'arrive plus à soulever la moindre plume… Télékinésiste, à toi !",
+      "title": "Le poids d'une plume",
+      "consigne": "Déplacez [objet] jusqu'à [endroit] sans le tenir à la main : ficelles, poulie… ou guidez à la voix une Gardienne aux yeux bandés. Le Maître du jeu vous donnera le code quand l'objet sera arrivé.",
+      "answers": ["FORCE"],
+      "hint": "Le Maître du jeu connaît le code. Faites arriver l'objet à destination et il vous le chuchotera.",
+      "successText": "Je sens de nouveau les objets bouger sans les toucher. Bravo !",
+      "reactText": "Déplacer un objet sans le toucher ? Nous, on le fait en dormant."
+    },
+    {
+      "id": "guerison", "name": "Guérison", "talent": "Guérisseuse", "color": "#6EE07A",
+      "bonusOnly": true,
+      "callText": "Mes blessures ne se referment plus… Guérisseuse, viens m'aider !",
+      "title": "Les mains qui soignent",
+      "consigne": "Les Invisibles ont brisé [objet à réparer]. Réparez-le de vos mains ! Quand il fonctionne, le Maître du jeu vous donnera le code.",
+      "answers": ["SOIN"],
+      "hint": "Le Maître du jeu connaît le code. Montrez-lui l'objet réparé, il vous le chuchotera.",
+      "successText": "Mes blessures se referment. Merci, Guérisseuse !",
+      "reactText": "Oh non, elle est guérie… Quel dommage. Enfin, pour vous."
+    }
+  ],
+  "trap": {
+    "afterPower": "middle",
+    "announceText": "Attendez… je capte un signal ! On dirait un de mes pouvoirs perdus, il vient {{piege_de}}. Allez vite le chercher et posez-le sur le Transmetteur !",
+    "corruptedPower": "last_acquired",
+    "corruptText": "Hi hi hi ! Vous êtes tombées dans notre piège ! Un de vos pouvoirs nous appartient désormais.",
+    "corruptSophieText": "Non ! Un de mes pouvoirs vient d'être corrompu… il s'est éteint !",
+    "repair": {
+      "type": "simon",
+      "rounds": [3, 4, 5],
+      "stepDurationMs": 1200,
+      "replaysPerRound": 2,
+      "maxFailuresBeforeHelp": 6,
+      "lastRoundIncludesCorrupted": true
+    },
+    "repairIntroText": "Les Invisibles l'ont enfermé sous un sceau. Pour le briser, rejouez l'écho des pouvoirs : mémorisez l'ordre des cristaux qui s'allument, puis posez vos pendentifs dans le même ordre. Trois échos, de plus en plus longs. Travaillez ensemble !",
+    "roundIntroTexts": [
+      "Premier écho. Regardez et écoutez bien…",
+      "Deuxième écho, un peu plus long. Restez concentrées !",
+      "Dernier écho, le plus long. C'est le plus difficile !"
+    ],
+    "wrongStepTexts": [
+      "Faux ! L'écho se brouille…",
+      "Ha ha ! Mauvais pendentif, mauvais ordre !",
+      "Vous avez perdu le fil ! On recommence.",
+      "Trop de bruit dans vos têtes… encore une fois !"
+    ],
+    "helpText": "Ne vous découragez pas, Gardiennes ! J'ai ralenti l'écho pour vous aider.",
+    "roundSuccessTexts": [
+      "Bravo ! Le sceau se fissure…",
+      "Encore un effort ! Il craque de partout !"
+    ],
+    "restoredText": "Le sceau est brisé ! Mon pouvoir est revenu, plus fort qu'avant. Merci, Gardiennes !",
+    "restoredInvText": "Grr… vous avez de la chance. Cette fois."
+  },
+  "final": {
+    "mode": "echo",
+    "echoStepMs": 1300,
+    "words": [
+      { "word": "COURAGE", "cards": "EGURCAO", "hint": "Il en faut beaucoup pour affronter les Invisibles… et vous en avez à revendre !" },
+      { "word": "GARDIENS", "cards": "RESADNIG", "hint": "C'est ce que vous êtes toutes devenues…" },
+      { "word": "CHAMPIONS", "cards": "PSOMHANIC", "hint": "Vous êtes les meilleures, de vraies…" },
+      { "word": "FORMIDABLE", "cards": "BLOMEARFID", "hint": "Comment Sophie trouve-t-elle votre équipe ? Absolument…" }
+    ],
+    "order": [
+      "invocateur", "eclipseur", "empathe", "telepathe", "teleporteur", "rafaleur",
+      "hydrokinesiste", "polyglotte", "flasheur", "givreur", "technopathe", "chargeur",
+      "phaseur", "hypnotiseur", "instillateur", "fluctuateur", "tenebreux", "vociferateur"
+    ],
+    "lockoutSec": 20,
+    "hintAfterFailures": 3,
+    "announceText": "Tous mes pouvoirs sont revenus, mais il me manque une dernière force : celle de votre équipe. Elle dort dans vos pendentifs.",
+    "consigneText": "Regardez l'écho : mes pouvoirs vont se rallumer dans l'ordre où vous les avez réveillés. Puis posez vos pendentifs sur le Transmetteur dans le même ordre. Vos cartes numérotées peuvent vous aider !",
+    "wrongOrderTexts": [
+      "Ha ha ! Mauvais ordre. L'équipe est toute mélangée !",
+      "Ce n'est pas la bonne formation… essayez encore !",
+      "Oh, quelle confusion ! Adorable."
+    ],
+    "lockoutText": "Les pendentifs se rechargent… attendez un instant.",
+    "hint": "Regardez les numéros de vos cartes, Gardiennes : la carte n°1 commence, puis la n°2…",
+    "heartLocationText": "C'est ça ! L'équipe est unie et la magie éclate ! Mon Cœur est caché {{coeur_lieu}}. Vite, avant que les Invisibles ne l'attrapent !",
+    "heartInvText": "Non non non ! Ne touchez pas au Cœur de Sophie !",
+    "finaleTexts": [
+      "Mon Cœur bat de nouveau ! Je sens tous mes pouvoirs revenir, un par un…",
+      "Vous avez réussi, Gardiennes ! Grâce à votre courage et à votre amitié, les Invisibles sont vaincus.",
+      { "speaker": "invisibles", "text": "Nooon ! On se vengera ! Enfin… après le gâteau." },
+      "Vous n'êtes plus des Gardiennes en formation : vous êtes de vraies Gardiennes des cités perdues.",
+      "Et n'oublions pas : joyeux anniversaire, [prénom] ! Rendez-vous pour le gâteau, le Maître du jeu a une surprise pour chacune de vous."
+    ]
+  },
+  "bonus": {
+    "introText": "Il reste des talents endormis… Voulez-vous m'aider encore un peu, Gardiennes ?"
+  },
+  "messages": {
+    "wrongPendant": [
+      "Ce n'est pas ton talent, petite Gardienne !",
+      "Mauvais pendentif ! Vous êtes bien tête en l'air.",
+      "Hi hi hi ! Mauvaise Gardienne, mauvais pouvoir !",
+      "Le pendentif ne répond pas… il a choisi quelqu'un d'autre.",
+      "Tss tss tss. Ce pouvoir n'est pas pour toi."
+    ],
+    "unknownTag": [
+      "Signal inconnu… Les Invisibles brouillent la ligne !",
+      "Cet objet ne fait pas partie de la magie de Sophie.",
+      "Hein ? Qu'est-ce que c'est que ça ? On ne le connaît pas."
+    ],
+    "fakeBadgeTooEarly": [
+      { "speaker": "sophie", "text": "Ce pendentif ne répond pas encore… Gardez-le de côté, Gardiennes." },
+      { "speaker": "sophie", "text": "Hmm, je ne sens rien pour l'instant. Chaque chose en son temps !" },
+      { "speaker": "sophie", "text": "Pas maintenant : concentrons-nous sur l'épreuve en cours." }
+    ],
+    "heartTooEarly": [
+      "Ce badge est mon Cœur ! Rendez-moi d'abord tous mes pouvoirs.",
+      "Pas encore… mon Cœur n'est pas prêt à battre."
+    ],
+    "tooFastSecondScan": [
+      "Déjà ? Je ne te crois pas…",
+      "Hé ho, tu n'as pas eu le temps de finir !",
+      "Pas si vite, Gardienne ! Termine d'abord ton épreuve.",
+      "Mon intuition me dit que ce n'est pas fini…"
+    ],
+    "wrongCode": [
+      "Raté ! Les Invisibles rient de vous.",
+      "Non non non… ce n'est pas le bon mot !",
+      "Hi hi, encore un essai pour rien !",
+      "Un mot faux ? Ça, c'est un cadeau !",
+      "Ce code est mauvais. Réfléchissez mieux !"
+    ],
+    "wrongCodeSophie": [
+      "Pas tout à fait… Relis bien chaque lettre, Gardienne.",
+      "Presque ! Ne les écoute pas, tu vas y arriver.",
+      "Courage ! Vérifie avec tes amies avant de valider.",
+      "Respire un grand coup et essaie encore. Je crois en toi !"
+    ],
+    "codeOk": [
+      "C'est le bon code ! Je sens la magie revenir…",
+      "Oui ! Une étincelle s'allume en moi…",
+      "Bravo, Gardiennes ! Mon pouvoir se réveille !",
+      "Je le sens… il revient ! Continuez comme ça !",
+      "Exactement ! Une force nouvelle me traverse…",
+      "Le code est juste ! Ma lumière grandit !"
+    ],
+    "idleSophie": [
+      "Alors, ça vient ? Je ne tiens plus longtemps…",
+      "Gardiennes ? Vous êtes toujours là ?",
+      "Je commence à avoir mal partout… courage !",
+      "Chaque minute compte, les Invisibles sont sur mes talons !",
+      "Je crois en vous ! Mais vite, quand même…",
+      "Un petit coup de collier, Gardiennes !",
+      "Je vous entends réfléchir d'ici… continuez !",
+      "Ne lâchez rien, vous y êtes presque !"
+    ],
+    "idleInvisibles": [
+      "Prenez votre temps, on a toute la nuit…",
+      "Oh, vous bloquez ? Comme c'est triste.",
+      "Tic tac, tic tac… le temps file, Gardiennes !",
+      "On s'ennuie… vous êtes toujours en train de chercher ?",
+      "Un peu d'aide ? Non ? Tant pis pour vous.",
+      "Ha ha, elles n'y arriveront jamais !",
+      "On va prendre un goûter pendant que vous cherchez.",
+      "Encore quelques minutes et Sophie sera à nous !"
+    ],
+    "invisiblesAfterSuccess": [
+      "Bravo, bravo… mais ce n'est pas fini.",
+      "Un pouvoir de plus ? Peu importe, on a d'autres tours dans notre sac.",
+      "Ne vous réjouissez pas trop vite, petites Gardiennes.",
+      "Oh, vous êtes douées. C'est agaçant."
+    ]
+  },
+  "ui": {
+    "homeTitle": "Les Pouvoirs volés",
+    "homeSubtitle": "Mission Sophie",
+    "startButton": "Lancer la mission",
+    "replayButton": "Écouter à nouveau",
+    "replayGameButton": "Rejouer",
+    "newGameButton": "Nouvelle partie",
+    "cardReminder": "Va chercher ta carte-souvenir n°{n} auprès du Maître du jeu !"
+  }
+}

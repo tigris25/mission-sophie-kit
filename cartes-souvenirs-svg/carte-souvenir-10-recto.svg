@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="85.6mm" height="54.0mm" viewBox="0 0 85.6 54.0">
+  <title>Carte-souvenir 10 - recto</title>
+  <g id="contour_carte" inkscape:groupmode="layer" inkscape:label="Contour carte (repere, ne pas graver)" fill="none" stroke="#ff0000" stroke-width="0.1">
+    <rect x="0" y="0" width="85.6" height="54.0" rx="3"/>
+  </g>
+  <g id="traits" inkscape:groupmode="layer" inkscape:label="Gravure traits" fill="none" stroke="#000000" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="2" width="81.6" height="50" rx="1.6"/>
+    <rect x="3.2" y="3.2" width="79.2" height="47.6" rx="0.8"/>
+    <circle cx="21" cy="27" r="14"/>
+    <circle cx="21" cy="27" r="12.9"/>
+    <line x1="40" y1="24.6" x2="80" y2="24.6" stroke-width="0.25"/>
+  </g>
+  <g id="pleins" inkscape:groupmode="layer" inkscape:label="Gravure pleine" fill="#000000" stroke="none">
+    <polygon points="5.6,4.4 6.8,5.6 5.6,6.8 4.4,5.6"/>
+    <polygon points="5.6,47.2 6.8,48.4 5.6,49.6 4.4,48.4"/>
+    <polygon points="80,4.4 81.2,5.6 80,6.8 78.8,5.6"/>
+    <polygon points="80,47.2 81.2,48.4 80,49.6 78.8,48.4"/>
+    <polygon points="40,23.7 40.9,24.6 40,25.5 39.1,24.6"/>
+    <polygon points="21.000,7.300 20.564,9.064 18.800,9.500 20.564,9.936 21.000,11.700 21.436,9.936 23.200,9.500 21.436,9.064"/>
+    <polygon points="9.000,43.400 8.683,44.683 7.400,45.000 8.683,45.317 9.000,46.600 9.317,45.317 10.600,45.000 9.317,44.683"/>
+    <polygon points="33.000,43.400 32.683,44.683 31.400,45.000 32.683,45.317 33.000,46.600 33.317,45.317 34.600,45.000 33.317,44.683"/>
+  </g>
+  <g id="textes" inkscape:groupmode="layer" inkscape:label="Textes (convertir en chemins)" fill="#000000" stroke="none">
+    <text x="21" y="32.8" text-anchor="middle" font-family="Cinzel, 'Trajan Pro', 'Times New Roman', serif" font-weight="700" font-size="15">10</text>
+    <text x="40" y="12.5" font-family="Cinzel, 'Trajan Pro', 'Times New Roman', serif" font-size="2.3" letter-spacing="0.35">MISSION SOPHIE</text>
+    <text x="40" y="20" font-family="Cinzel, 'Trajan Pro', 'Times New Roman', serif" font-weight="700" font-size="3.9">CARTE-SOUVENIR</text>
+    <g font-family="'Cormorant Garamond', Garamond, 'Times New Roman', serif" font-style="italic" font-weight="600" font-size="3.2">
+    <text x="40" y="31">Tu as réveillé un pouvoir</text>
+    <text x="40" y="35">de Sophie. Garde-moi bien :</text>
+    <text x="40" y="39">je te servirai à la fin !</text>
+    </g>
+    <text x="40" y="47" font-family="Cinzel, 'Trajan Pro', 'Times New Roman', serif" font-size="2.3" letter-spacing="0.3">N° 10</text>
+  </g>
+</svg>

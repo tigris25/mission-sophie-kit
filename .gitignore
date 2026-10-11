@@ -1,0 +1,12 @@
+node_modules/
+.gradle/
+build/
+.kotlin/
+local.properties
+.idea/
+*.iml
+.DS_Store
+~$*
+# voix enregistrées et médias personnels
+voix/wav/
+voix/mp3/
