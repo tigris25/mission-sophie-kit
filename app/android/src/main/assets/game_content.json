@@ -1,6 +1,17 @@
 {
   "version": 3,
   "defaultVariant": "pluie",
+  "params": {
+    "prenom": "[prénom]",
+    "age": "10"
+  },
+  "paramLabels": {
+    "prenom": "Prénom de l'enfant fêtée",
+    "age": "Âge",
+    "piege_de": "D'où vient le faux pouvoir (le piège), ex. « de la mezzanine »",
+    "coeur_lieu": "Cachette du Cœur de Sophie, ex. « dans la cave »",
+    "eclipse_zone": "Zone de l'Éclipseur (passage surveillé), ex. « la cuisine »"
+  },
   "variants": {
     "pluie": {
       "_label": "☔ Il pleut",
@@ -320,7 +331,7 @@
       "Vous avez réussi, Gardiennes ! Grâce à votre courage et à votre amitié, les Invisibles sont vaincus.",
       { "speaker": "invisibles", "text": "Nooon ! On se vengera ! Enfin… après le gâteau." },
       "Vous n'êtes plus des Gardiennes en formation : vous êtes de vraies Gardiennes des cités perdues.",
-      "Et n'oublions pas : joyeux anniversaire, [prénom] ! Rendez-vous pour le gâteau, le Maître du jeu a une surprise pour chacune de vous."
+      "Et n'oublions pas : joyeux anniversaire, {{prenom}} ! Rendez-vous pour le gâteau, le Maître du jeu a une surprise pour chacune de vous."
     ]
   },
   "bonus": {
@@ -404,7 +415,7 @@
   },
   "ui": {
     "homeTitle": "Les Pouvoirs volés",
-    "homeSubtitle": "Mission Sophie",
+    "homeSubtitle": "Mission Sophie · {{prenom}}, {{age}} ans",
     "startButton": "Lancer la mission",
     "replayButton": "Écouter à nouveau",
     "replayGameButton": "Rejouer",

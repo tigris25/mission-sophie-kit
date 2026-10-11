@@ -356,6 +356,18 @@ private fun SettingsTab(c: GameController) {
                 }
             }
         }
+        if (content.params.isNotEmpty()) Section("Personnaliser : prénom, âge, lieux (vide = valeur du contenu)") {
+            Text("Les lieux sont repris dans les textes de Sophie ; ils ne sont pas lus par les voix enregistrées.", fontSize = 15.sp, color = Color.LightGray)
+            content.params.forEach { p ->
+                p.values.forEach { (variantId, current) ->
+                    val key = if (variantId.isEmpty()) p.key else "$variantId.${p.key}"
+                    val variantLabel = content.variants.firstOrNull { it.id == variantId }?.label
+                    ParamField(if (variantLabel != null) "${p.label} ($variantLabel)" else p.label, settings.params[key].orEmpty(), current) { v ->
+                        c.updateSettings { it.copy(params = if (v.isBlank()) it.params - key else it.params + (key to v.trim())) }
+                    }
+                }
+            }
+        }
         Section("Messages d'attente et codes (vide = valeur du contenu)") {
             NumberField("1er message d'attente après (s)", settings.idleFirstAfterSec, base.idleFirstAfterSec) { v -> c.updateSettings { it.copy(idleFirstAfterSec = v) } }
             NumberField("Puis toutes les (s)", settings.idleRepeatEverySec, base.idleRepeatEverySec) { v -> c.updateSettings { it.copy(idleRepeatEverySec = v) } }
@@ -402,6 +414,18 @@ private fun NumberField(label: String, value: Int?, default: Int, onChange: (Int
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         )
+    }
+}
+
+/** Text field saved with its button (each save reloads the texts of the content). */
+@Composable
+private fun ParamField(label: String, value: String, current: String, onSave: (String) -> Unit) {
+    var text by remember(value) { mutableStateOf(value) }
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        OutlinedTextField(text, { text = it.take(80) }, Modifier.weight(1f), label = { Text(label) },
+            placeholder = { Text(current) }, singleLine = true)
+        Spacer(Modifier.width(8.dp))
+        Button({ onSave(text) }, enabled = text != value) { Text("Enregistrer") }
     }
 }
 

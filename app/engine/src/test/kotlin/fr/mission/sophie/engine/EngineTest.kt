@@ -126,6 +126,21 @@ class ContentTest {
         assertEquals(r.content.mainPowers.map { it.id }.toSet(), r.content.final.order.toSet())
     }
 
+    @Test fun nameAgeAndPlacesFromAdmin() {
+        val text = File("../android/src/main/assets/game_content.json").readText()
+        val def = ContentParser.parse(text)
+        assertEquals("Mission Sophie · [prénom], 10 ans", def.content.ui.homeSubtitle)
+        assertEquals(listOf("prenom", "age", "piege_de", "coeur_lieu", "eclipse_zone"), def.params.map { it.key })
+        assertEquals("dans la cave", def.params.first { it.key == "coeur_lieu" }.values["pluie"])
+        val r = ContentParser.parse(text, "beau", mapOf("prenom" to "Léa", "age" to "9", "beau.coeur_lieu" to "sous le banc", "pluie.coeur_lieu" to "au grenier", "beau.piege_de" to " "))
+        assertEquals("Mission Sophie · Léa, 9 ans", r.content.ui.homeSubtitle)
+        assertTrue(r.content.final.heartLocationText.contains("sous le banc"))
+        assertTrue(r.content.trap.announceText.contains("du trampoline")) // blank override = content value
+        assertTrue("joyeux anniversaire, Léa !" in ContentParser.json.encodeToString(GameContent.serializer(), r.content))
+        assertEquals("au grenier", r.params.first { it.key == "coeur_lieu" }.values["pluie"])
+        assertTrue(r.warnings.isEmpty(), "warnings: ${r.warnings}")
+    }
+
     @Test fun weatherVariants() {
         val text = File("../android/src/main/assets/game_content.json").readText()
         val rain = ContentParser.parse(text)

@@ -110,6 +110,7 @@ private fun HomeScreen(c: GameController, onAdmin: () -> Unit, onGame: () -> Uni
             NfcStatus.ABSENT -> "Pas de NFC sur cet appareil" + if (settings.simulator) " (simulateur actif)" else ""
         }
         val weather = content.variants.firstOrNull { it.id == content.variant }?.label?.let { " · $it" } ?: ""
+        if (content.raw.ui.homeSubtitle.contains('[')) Text("Prénom à régler : Admin › Réglages › Personnaliser", fontSize = 18.sp, color = Color(0xFFFFC56B))
         Text("$nfcText · $pendants pendentif${if (pendants > 1) "s" else ""} lié${if (pendants > 1) "s" else ""} · badges $badges/2$weather · Contenu v${content.raw.version}${if (content.imported) " (importé)" else ""}",
             fontSize = 18.sp, color = if (pendants > 0 && badges == 2 && nfc == NfcStatus.OK) Color(0xFF8BE39A) else Color(0xFFFFC56B))
     }

@@ -18,6 +18,7 @@ SPOKEN = {
     'final_ok_sophie': "C'est ça ! L'équipe est unie et la magie éclate ! Je vous révèle la cachette de mon Cœur. Vite, avant que les Invisibles ne l'attrapent !",
     'consigne_eclipseur': "Les gardes des Invisibles surveillent le passage. Traversez sans qu'ils vous voient bouger : dès qu'un garde se retourne, immobiles ! Si vous êtes surprises, on recommence. De l'autre côté, le Maître du jeu vous confiera le code.",
     'consigne_polyglotte': "Un message codé vous attend sur l'écran. Je ne peux pas vous dire comment régler la roue, les Invisibles nous écoutent… Mais voici mon secret : mes messages commencent toujours par LE. Trouvez le bon réglage, déchiffrez, et le dernier mot sera votre code.",
+    'finale_5': "Et n'oublions pas : joyeux anniversaire ! Rendez-vous pour le gâteau, le Maître du jeu a une surprise pour chacune de vous.",
     'card_secret': "Ta carte-souvenir t'attend auprès du Maître du jeu. Garde-la précieusement, elle servira à la fin !",
 }
 NOTES = {
@@ -25,13 +26,14 @@ NOTES = {
     'final_ok_sophie': 'Sans le lieu (il change avec la météo) : il reste écrit à l’écran.',
     'consigne_eclipseur': 'Sans le lieu (cuisine / allée du garage).',
     'consigne_polyglotte': 'Le message codé n’est pas lu à voix haute.',
+    'finale_5': 'Sans le prénom (réglable dans l’appli, il reste écrit à l’écran).',
     'card_secret': 'Sans le numéro de la carte (il est écrit à l’écran).',
 }
 
 
 def resolve(text):
     # Placeholders: the first variant (only for display in the list; spoken versions avoid them).
-    first = next(iter(VARIANTS.values()), {})
+    first = {**raw.get('params', {}), **next(iter(VARIANTS.values()), {})}
     return re.sub(r'\{\{(\w+)\}\}', lambda m: first.get(m.group(1), m.group(0)), text)
 
 

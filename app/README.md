@@ -12,7 +12,7 @@ Appareil : téléphone Android 8+ avec **NFC** (testé sur OnePlus 7 Pro, Androi
 | `engine/` | Moteur de jeu en Kotlin pur (sans Android) : contenu JSON et versions météo, rassemblement, séquence adaptée aux talents présents, piège et écho des pouvoirs, écho final, bonus, file des messages. Tests unitaires dans `engine/src/test`. |
 | `android/` | Application : NFC, persistance, audio, écrans Compose (accueil, Admin, Jeu, menu MJ, simulateur, cri-mètre). |
 | `android/src/main/assets/game_content.json` | Tous les textes et réglages du jeu (voir `textes-mission-sophie.docx`, généré depuis ce fichier). |
-| `android/src/main/assets/audio/`, `images/`, `video/` | Médias intégrés à l'APK (vides dans ce dépôt : voir le README principal). |
+| `android/src/main/assets/audio/`, `images/`, `video/` | Voix (mp3), musique, portrait (`sophie.jpg`) et vidéo (`sophie.mp4`) intégrés. |
 | `tools/` | Générateurs : `gen_symbols.py` (symboles de l'appli depuis le modèle 3D), `gen_cartes.py` (cartes de personnage), `gen_objets.py` (cartes-souvenirs, roue elfique). |
 
 ## Compiler
@@ -43,7 +43,7 @@ Activer le **NFC** dans les réglages du téléphone. L'antenne NFC est au dos :
 ## Utilisation
 
 - **Accueil** : Admin (PIN par défaut `4275`) ou Jeu. La ligne du bas indique le NFC, les pendentifs liés, les badges et la météo.
-- **Admin** : liaison des tags (un par pendentif + faux badge + Cœur), test de lecture, prévisualisation (avatars, animations, cri-mètre, sons), réglages (**météo**, délais, volumes, **muet**, PIN, simulateur, voix de secours), import du contenu et des médias, vérification des voix, sauvegarde des liaisons, journal, réinitialisation de la partie.
+- **Admin** : liaison des tags (un par pendentif + faux badge + Cœur), test de lecture, prévisualisation (avatars, animations, cri-mètre, sons), réglages (**météo**, **prénom, âge et lieux**, délais, volumes, **muet**, PIN, simulateur, voix de secours), import du contenu et des médias, vérification des voix, sauvegarde des liaisons, journal, réinitialisation de la partie.
 - **Jeu** : introduction → **rassemblement** (chaque fille pose son pendentif) → épreuves des talents présents, piège au milieu → **écho final** → Cœur → finale → épreuves bonus.
 - **Menu MJ** : appui long de **3 secondes** sur le portrait de Sophie (en haut à gauche), puis PIN. Il n'affiche jamais de code : passer l'étape, forcer le code ou le cri, joker, indice, messages, pause des messages d'attente, valider le piège, étape précédente, redémarrer, volumes, muet, bonus.
 - La partie est **sauvegardée à chaque changement**. En relançant « Jeu », on choisit « Reprendre la partie » ou « Nouvelle partie ».
@@ -62,6 +62,7 @@ Format de l'annexe A du cahier des charges, **étendu**. Principaux ajouts :
 | Champ | Rôle |
 |---|---|
 | `variants`, `defaultVariant` | Versions des lieux (`pluie`, `beau`) : chaque `{{clé}}` des textes est remplacée par la valeur de la version choisie dans Admin › Réglages › Météo. |
+| `params`, `paramLabels` | Clés communes (`{{prenom}}`, `{{age}}`) et libellés des champs d'Admin › Réglages › Personnaliser, où prénom, âge et lieux de chaque version se modifient sans toucher au fichier. |
 | `sequence` | Ordre préféré des épreuves ; seules celles des talents posés au rassemblement sont jouées. |
 | `gathering` | Textes du rassemblement (`{la}{talent}` → « L'Invocatrice »). |
 | `powers[].kind` | `code` (défaut) ou `shout` (cri-mètre, réglé par `shout.threshold` et `shout.holdSec`). |
@@ -82,11 +83,11 @@ Admin › Contenu › **Importer un dossier** copie dans l'application tous les 
 
 | Fichier | Usage |
 |---|---|
-| `<identifiant>.mp3` (ou `.ogg`, `.m4a`, `.wav`) | Voix d'un message. À placer dans `assets/audio/` (préparées avec `tools/convertir_voix.py`). Les identifiants sont dans la colonne « Voix » de `textes-mission-sophie.docx`, et dans Admin › Contenu › **Vérifier les voix** (✓/✗). |
-| `sophie.png` / `.jpg` | Portrait de Sophie (avatar rond, recadré sur le visage). À placer dans `assets/images/` ou à importer. |
+| `<identifiant>.mp3` (ou `.ogg`, `.m4a`, `.wav`) | Voix d'un message. Intégrées dans `assets/audio/` (préparées avec `tools/convertir_voix.py`). Les identifiants sont dans la colonne « Voix » de `textes-mission-sophie.docx`, et dans Admin › Contenu › **Vérifier les voix** (✓/✗). |
+| `sophie.png` / `.jpg` | Portrait de Sophie (avatar rond, recadré sur le visage). Intégré : `assets/images/sophie.jpg`. |
 | `invisibles.png` (ou `.gif`, `.webp` animé) | Remplace l'œil des Invisibles dessiné dans le code. |
-| `sophie.mp4` | Vidéo muette de Sophie, dans un panneau à gauche, affichée seulement quand elle parle. À placer dans `assets/video/` ou à importer. |
-| `music.mp3` / `music.ogg` | Musique d'ambiance en boucle, baissée pendant les voix. Conseillée : « Fantascape » (version boucle), Eric Matyas, www.soundimage.org, à télécharger soi-même (crédit obligatoire, affiché dans Admin › Contenu et voix). |
+| `sophie.mp4` | Vidéo muette de Sophie, dans un panneau à gauche, affichée seulement quand elle parle. Intégrée : `assets/video/sophie.mp4`. |
+| `music.mp3` / `music.ogg` | Musique d'ambiance en boucle, baissée pendant les voix. Intégrée : « Fantascape » (version boucle), Eric Matyas, www.soundimage.org (crédit obligatoire, affiché dans Admin › Contenu et voix). |
 | `sfx_scan_ok`, `sfx_neutral`, `sfx_step_ok`, `sfx_error`, `sfx_level_up`, `sfx_corruption`, `sfx_finale`, `sfx_power_0` … `sfx_power_19` | Remplacent les sons générés. |
 
 ## Choix d'implémentation à connaître

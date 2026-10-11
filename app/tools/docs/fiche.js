@@ -10,7 +10,7 @@ const RAW = JSON.parse(fs.readFileSync(path.join(ROOT, 'app/android/src/main/ass
 // Weather versions of the places: texts are shown with {{key}} replaced by "rainy / sunny".
 const VARIANTS = RAW.variants || {};
 const VIDS = Object.keys(VARIANTS);
-const both = key => VIDS.map(v => VARIANTS[v][key]).filter((x, i, a) => a.indexOf(x) === i).join(' / ');
+const both = key => (RAW.params && key in RAW.params) ? RAW.params[key] : VIDS.map(v => VARIANTS[v][key]).filter((x, i, a) => a.indexOf(x) === i).join(' / ');
 const C = JSON.parse(JSON.stringify(RAW).replace(/\{\{(\w+)\}\}/g, (m, k) => both(k).replace(/"/g, '\\"')));
 const S = 17; // body text size (half-points)
 const VIOLET = '4B2E83', HEAD = 'EDE7F6', BLUE = 'E8F1FF', MAUVE = 'F3E6F5', YELLOW = 'FFF4CC';

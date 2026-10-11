@@ -34,9 +34,10 @@ data class ContentInfo(
     val warnings: List<String>,
     val variants: List<fr.mission.sophie.engine.Variant> = emptyList(),
     val variant: String? = null,
+    val params: List<fr.mission.sophie.engine.Param> = emptyList(),
 )
 
-private fun ContentLoadResult.info(imported: Boolean) = ContentInfo(content, imported, warnings, variants, variant)
+private fun ContentLoadResult.info(imported: Boolean) = ContentInfo(content, imported, warnings, variants, variant, params)
 
 data class ScanInfo(val time: Long, val uid: String, val roleKey: String?, val simulated: Boolean)
 
@@ -82,7 +83,7 @@ class GameController(private val context: Context) {
     var gameVisible = false
 
     init {
-        val (loaded, imported) = stores.loadContent(_settings.value.variant)
+        val (loaded, imported) = stores.loadContent(_settings.value.variant, _settings.value.params)
         val info = loaded.info(imported)
         _content = MutableStateFlow(info)
         content = _content.asStateFlow()
@@ -164,11 +165,11 @@ class GameController(private val context: Context) {
         _settings.value = s
         stores.saveSettings(s)
         applyAudioSettings(s)
-        if (s.variant != old.variant) {
-            // Weather switch: reload the texts with the other places (the game in progress keeps going).
-            val (loaded, imported) = stores.loadContent(s.variant)
+        if (s.variant != old.variant || s.params != old.params) {
+            // Weather switch or new name/places: reload the texts (the game in progress keeps going).
+            val (loaded, imported) = stores.loadContent(s.variant, s.params)
             setContent(loaded.info(imported))
-            log("admin", "Version des lieux : ${loaded.variant}")
+            if (s.variant != old.variant) log("admin", "Version des lieux : ${loaded.variant}")
         } else {
             engine = GameEngine(s.applyTo(_content.value.raw))
         }
@@ -184,7 +185,7 @@ class GameController(private val context: Context) {
 
     /** Throws ContentException with a precise message; the previous content stays active. */
     fun importContent(text: String): ContentLoadResult {
-        val r = stores.importContent(text, _settings.value.variant)
+        val r = stores.importContent(text, _settings.value.variant, _settings.value.params)
         setContent(r.info(true))
         log("admin", "Contenu importé (version ${r.content.version})")
         r.warnings.forEach { log("contenu", it) }
@@ -193,7 +194,7 @@ class GameController(private val context: Context) {
 
     fun resetContent() {
         stores.resetContent()
-        val (loaded, imported) = stores.loadContent(_settings.value.variant)
+        val (loaded, imported) = stores.loadContent(_settings.value.variant, _settings.value.params)
         setContent(loaded.info(imported))
     }
 

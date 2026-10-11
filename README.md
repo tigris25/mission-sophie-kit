@@ -5,7 +5,7 @@ Un jeu d'anniversaire pour **7 à 10 enfants de 9-10 ans** (environ 1 h 30), ins
 **pendentifs NFC** imprimés en 3D, les joueuses aident Sophie à les récupérer, épreuve après épreuve,
 avec un téléphone Android, « le Transmetteur de Sophie », recopié sur la télé.
 
-> Projet de fans, non officiel et sans lien avec l'autrice ni l'éditeur de la série.
+> Projet de fans, non officiel et sans lien avec l'autrice ni l'éditeur de la série. Voix, portrait et vidéo de Sophie générés par IA.
 
 ![Pendentifs](apercus/apercu-amulettes-goutte.png)
 
@@ -36,33 +36,35 @@ avec un téléphone Android, « le Transmetteur de Sophie », recopié sur la t�
 2. **Imprimer les pendentifs** (voir plus bas), y glisser les tags.
 3. **Imprimer les cartes** : `cartes-a-imprimer.pdf` à 100 %, recto-verso **bord long**, puis plastifier. Les imprimables (indices, message codé…) sont dans `documents/imprimables-mission-sophie.pdf`.
 4. **Installer l'appli** : APK disponible dans les *Releases* du dépôt, ou à compiler (`app/README.md`). Autoriser le micro (cri-mètre).
-5. **Lier les tags** : accueil › Admin (PIN `4275`, modifiable) › Liaison : un tag par pendentif, puis le faux badge et le Cœur.
-6. **Choisir la météo** (Admin › Réglages › Météo) : les lieux des cachettes changent selon qu'on joue dedans (pluie) ou dehors (beau).
-7. Désactiver le **simulateur** (Admin › Réglages › Tests) avant de jouer, et suivre `app/CHECKLIST-JOUR-J.md`.
+5. **Régler le prénom, l'âge et les lieux** dans l'appli (voir « Personnaliser »).
+6. **Lier les tags** : accueil › Admin (PIN `4275`, modifiable) › Liaison : un tag par pendentif, puis le faux badge et le Cœur.
+7. **Choisir la météo** (Admin › Réglages › Météo) : les lieux des cachettes changent selon qu'on joue dedans (pluie) ou dehors (beau).
+8. Désactiver le **simulateur** (Admin › Réglages › Tests) avant de jouer, et suivre `app/CHECKLIST-JOUR-J.md`.
 
 Pendant la partie, le **menu du maître du jeu** s'ouvre par un appui long de 3 secondes sur le portrait de Sophie, puis le PIN : passer une étape, joker, indice, retour arrière, volumes…
 
 ## Personnaliser
 
-Tous les textes et réglages sont dans [`app/android/src/main/assets/game_content.json`](app/android/src/main/assets/game_content.json) :
+**Dans l'appli**, sans rien recompiler : Admin › Réglages › **Personnaliser** :
 
-- **Le prénom** : remplacer `[prénom]` dans le message final (« joyeux anniversaire, [prénom] ! ») et, si on veut, `ui.homeSubtitle`.
-- **Les lieux** : les clés `{{…}}` de `variants.pluie` et `variants.beau`.
-- **Les talents** : seuls ceux des pendentifs posés au rassemblement sont joués ; l'ordre est dans `sequence`.
-- **Les codes** des épreuves : à changer avec les indices imprimés.
+- **Prénom** et **âge** de l'enfant fêtée (écran d'accueil et message final de Sophie). Tant que le prénom n'est pas réglé, l'accueil le rappelle.
+- **Les lieux**, pour chaque météo : d'où vient le faux pouvoir (le piège), la cachette du Cœur de Sophie, la zone surveillée de l'Éclipseur. Écrire le lieu comme il s'insère dans la phrase : « de la mezzanine », « dans la cave », « la cuisine ».
+- La **météo** (Admin › Réglages › Météo) choisit la série de lieux : pluie (dedans) ou beau temps (dehors).
 
-Le fichier peut aussi être modifié sans recompiler : Admin › Contenu › Importer. Après une modification, régénérer les documents (voir plus bas) pour que la notice reste à jour.
+Les voix enregistrées ne prononcent ni le prénom ni les lieux : ils restent écrits à l'écran, la voix colle donc à n'importe quel réglage.
 
-## Voix, musique, images (non fournies)
+**Pour aller plus loin**, tous les textes sont dans [`app/android/src/main/assets/game_content.json`](app/android/src/main/assets/game_content.json) :
+`params` (valeurs par défaut du prénom et de l'âge), `variants` (lieux par météo), `{{prenom}}`, `{{age}}` ou `{{nom_du_lieu}}` utilisables dans n'importe quel texte, `sequence` (ordre des épreuves ; seules celles des pendentifs posés au rassemblement sont jouées), les codes des épreuves (à changer avec les indices imprimés).
+Le fichier modifié s'importe sans recompiler (Admin › Contenu › Importer). Régénérer ensuite les documents (voir plus bas).
 
-L'appli fonctionne sans aucun média : les textes s'affichent, les sons sont générés. Pour aller plus loin :
+## Voix, images, musique
 
-- **Voix** : enregistrer (ou générer avec une synthèse vocale) les répliques de `documents/voix-mission-sophie.pdf`, en commençant par les ★ prioritaires. Les fichiers portent le nom de la colonne « Fichier ». Pour les convertir (coupe des silences, volume égalisé, mp3) : `python tools/convertir_voix.py dossier-wav dossier-mp3` depuis `app/` (ffmpeg requis).
-- **Musique** : « Fantascape » (version boucle) d'Eric Matyas, gratuite avec crédit, sur [soundimage.org](https://soundimage.org/fantasywonder/). À renommer `music.mp3`. Crédit à afficher : *« Fantascape », Eric Matyas, www.soundimage.org*.
-- **Sophie** : un portrait `sophie.png` et, si on veut, une courte vidéo muette `sophie.mp4` (affichée quand elle parle).
-- **Les Invisibles** : `invisibles.png` (ou `.gif` animé), sinon un œil est dessiné par l'appli.
+Inclus dans l'appli (générés par IA) :
 
-Deux façons de les ajouter : copier les fichiers sur le téléphone puis Admin › Contenu › **Importer un dossier** (« Vérifier les voix » liste ce qui manque), ou les placer dans `app/android/src/main/assets/audio`, `images`, `video` avant de compiler.
+- **129 voix** (Sophie et les Invisibles), mp3. La liste complète des 209 répliques est dans `documents/voix-mission-sophie.pdf` : celles qui manquent (consignes, variantes, épreuves bonus…) s'affichent en texte. Pour en ajouter : nommer le fichier comme la colonne « Fichier », puis Admin › Contenu › **Importer un dossier** (« Vérifier les voix » liste ce qui manque) ou le placer dans `app/android/src/main/assets/audio/`. Conversion (coupe des silences, volume égalisé, mp3) : `python tools/convertir_voix.py dossier-wav dossier-mp3` depuis `app/` (ffmpeg requis).
+- Le **portrait** (`sophie.jpg`) et la **vidéo** muette de Sophie (`sophie.mp4`), affichée quand elle parle.
+- La **musique** : « Fantascape » (version boucle), Eric Matyas, www.soundimage.org ([soundimage.org](https://soundimage.org/fantasywonder/), gratuite avec crédit, affiché dans l'appli).
+- Les Invisibles : un œil dessiné par l'appli, remplaçable par `invisibles.png` (ou `.gif` animé).
 
 ## Impression 3D
 

@@ -1654,8 +1654,8 @@
   "speaker": "sophie",
   "moment": "Finale, écran 5",
   "screen": "Et n'oublions pas : joyeux anniversaire, [prénom] ! Rendez-vous pour le gâteau, le Maître du jeu a une surprise pour chacune de vous.",
-  "spoken": "Et n'oublions pas : joyeux anniversaire, [prénom] ! Rendez-vous pour le gâteau, le Maître du jeu a une surprise pour chacune de vous.",
-  "note": "",
+  "spoken": "Et n'oublions pas : joyeux anniversaire ! Rendez-vous pour le gâteau, le Maître du jeu a une surprise pour chacune de vous.",
+  "note": "Sans le prénom (réglable dans l’appli, il reste écrit à l’écran).",
   "n": 151,
   "file": "finale_5.mp3",
   "prio": 1

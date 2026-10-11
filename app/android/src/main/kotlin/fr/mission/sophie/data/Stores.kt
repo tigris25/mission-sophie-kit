@@ -28,6 +28,8 @@ data class AppSettings(
     val musicEnabled: Boolean = true,
     /** Version of the places ("pluie" / "beau"), null = default of the content. */
     val variant: String? = null,
+    /** Personalisation of the `{{key}}` of the content: "prenom", "age", or "pluie.coeur_lieu" for a place. Empty = value of the content. */
+    val params: Map<String, String> = emptyMap(),
     /** Mutes everything (voices, music, effects), e.g. for demos. */
     val muted: Boolean = false,
     /** null = default of the build type (on in debug, off in release). */
@@ -107,22 +109,22 @@ class Stores(private val context: Context) {
 
     // ------------------------------------------------------------------ content
     /** Imported content if present and valid, else the built-in asset. */
-    fun loadContent(variant: String? = null): Pair<ContentLoadResult, Boolean> {
+    fun loadContent(variant: String? = null, params: Map<String, String> = emptyMap()): Pair<ContentLoadResult, Boolean> {
         val imported = file("game_content.json")
         if (imported.exists()) {
             try {
-                return ContentParser.parse(imported.readText(), variant) to true
+                return ContentParser.parse(imported.readText(), variant, params) to true
             } catch (e: ContentException) {
                 // Corrupted import: fall back to the built-in content.
             }
         }
         val text = context.assets.open("game_content.json").bufferedReader(Charsets.UTF_8).use { it.readText() }
-        return ContentParser.parse(text, variant) to false
+        return ContentParser.parse(text, variant, params) to false
     }
 
     /** Validates then stores an imported content. Throws [ContentException] and keeps the old content on error. */
-    fun importContent(text: String, variant: String? = null): ContentLoadResult {
-        val r = ContentParser.parse(text, variant)
+    fun importContent(text: String, variant: String? = null, params: Map<String, String> = emptyMap()): ContentLoadResult {
+        val r = ContentParser.parse(text, variant, params)
         writeAtomic("game_content.json", text)
         return r
     }

@@ -331,12 +331,17 @@ data class GameContent(
 /** A version of the places (e.g. "pluie" / "beau"), chosen in Admin. */
 data class Variant(val id: String, val label: String)
 
+/** A `{{key}}` editable in Admin › Réglages: [values] by variant id (or "" for a key common to all variants). */
+data class Param(val key: String, val label: String, val values: Map<String, String>)
+
 /** Result of parsing: the content, non-fatal warnings (for the log), the available variants and the one applied. */
 data class ContentLoadResult(
     val content: GameContent,
     val warnings: List<String>,
     val variants: List<Variant> = emptyList(),
     val variant: String? = null,
+    /** Editable keys: `params` (prénom, âge…) then the places of the variants. */
+    val params: List<Param> = emptyList(),
 )
 
 class ContentException(message: String, cause: Throwable? = null) : Exception(message, cause)
@@ -357,8 +362,10 @@ object ContentParser {
      *
      * Variants: the JSON may contain `"variants": { "pluie": { "_label": "Il pleut", "piege_de": "de la mezzanine", ... }, ... }`.
      * Every `{{key}}` in the texts is replaced by the value of the chosen [variant] (else `defaultVariant`, else the first).
+     * `"params": { "prenom": "…", "age": "10" }` gives keys common to all variants; `"paramLabels"` names them for the admin.
+     * [overrides] (from Admin › Réglages) win: "prenom" for a common key, "pluie.coeur_lieu" for a place of one variant.
      */
-    fun parse(text: String, variant: String? = null): ContentLoadResult {
+    fun parse(text: String, variant: String? = null, overrides: Map<String, String> = emptyMap()): ContentLoadResult {
         val root = try {
             json.parseToJsonElement(text)
         } catch (e: Exception) {
@@ -372,11 +379,23 @@ object ContentParser {
         } ?: emptyList()
         val default = (obj["defaultVariant"] as? JsonPrimitive)?.contentOrNull
         val chosen = listOf(variant, default).firstOrNull { it != null && variants.any { v -> v.id == it } } ?: variants.firstOrNull()?.id
-        val values: Map<String, String> = (variantsObj?.get(chosen ?: "") as? JsonObject)
+        fun strings(o: JsonElement?) = (o as? JsonObject)?.filterKeys { !it.startsWith("_") }
             ?.mapValues { (_, v) -> (v as? JsonPrimitive)?.contentOrNull ?: "" } ?: emptyMap()
+        val common = strings(obj["params"])
+        val labels = strings(obj["paramLabels"])
+        fun valuesOf(id: String?): Map<String, String> {
+            val own = strings(variantsObj?.get(id ?: ""))
+            return common.mapValues { (k, v) -> overrides[k]?.takeIf { it.isNotBlank() } ?: v } +
+                own.mapValues { (k, v) -> overrides["$id.$k"]?.takeIf { it.isNotBlank() } ?: v }
+        }
+        val values = valuesOf(chosen)
+        val params = common.keys.map { k -> Param(k, labels[k] ?: k, mapOf("" to valuesOf(chosen)[k].orEmpty())) } +
+            variants.flatMap { v -> strings(variantsObj?.get(v.id)).keys }.distinct().map { k ->
+                Param(k, labels[k] ?: k, variants.associate { v -> v.id to valuesOf(v.id)[k].orEmpty() })
+            }
         val unknown = sortedSetOf<String>()
         fun subst(e: JsonElement): JsonElement = when (e) {
-            is JsonObject -> JsonObject(e.filterKeys { it != "variants" }.mapValues { subst(it.value) })
+            is JsonObject -> JsonObject(e.filterKeys { it !in setOf("variants", "params", "paramLabels") }.mapValues { subst(it.value) })
             is kotlinx.serialization.json.JsonArray -> kotlinx.serialization.json.JsonArray(e.map { subst(it) })
             is JsonPrimitive -> if (e.isString && "{{" in e.content) JsonPrimitive(placeholder.replace(e.content) { m ->
                 values[m.groupValues[1]] ?: m.value.also { unknown += m.groupValues[1] }
@@ -390,10 +409,10 @@ object ContentParser {
         }
         unknown.forEach { warnings += "Lieu {{$it}} non défini pour la version « ${chosen ?: "-"} »" }
         variantsObj?.entries?.forEach { (id, v) ->
-            val missing = values.keys - ((v as? JsonObject)?.keys ?: emptySet())
+            val missing = values.keys - common.keys - ((v as? JsonObject)?.keys ?: emptySet())
             if (missing.isNotEmpty()) warnings += "Version « $id » : il manque ${missing.joinToString()}"
         }
-        return ContentLoadResult(content, validate(content) + warnings, variants, chosen)
+        return ContentLoadResult(content, validate(content) + warnings, variants, chosen, params)
     }
 
     fun validate(c: GameContent): List<String> {
