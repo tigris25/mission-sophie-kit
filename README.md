@@ -98,3 +98,9 @@ Depuis `app/` :
 - Symboles des talents : d'après des dessins d'enfant.
 - Musique conseillée : « Fantascape », Eric Matyas, www.soundimage.org.
 - Univers : *Gardiens des cités perdues* (*Keeper of the Lost Cities*), Shannon Messenger. Les noms de talents et de personnages appartiennent à leurs ayants droit.
+
+## Licence
+
+Code (`app/`) : **MIT**. Textes, voix, images, documents, cartes et modèles 3D : **CC BY-NC 4.0** (partage et modification libres en citant la source, pas d'usage commercial). Détails et exceptions (musique, univers de la série) : [`LICENSE.md`](LICENSE.md).
+
+Questions, idées, photos de vos parties : ouvrez une *issue* sur ce dépôt.
